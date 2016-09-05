@@ -1,5 +1,6 @@
 #include <openssl/evp.h>
 #include <openssl/sha.h>
+#include <openssl/md5.h>
 #include <sstream>
 #include <iomanip>
 #include <string>
@@ -24,12 +25,12 @@ public:
   static std::string md5(const std::string &input, size_t iterations = 1) {
     std::string hash;
     hash.resize(128 / 8);
-    hash = md5(input);
     
-    for (size_t c = 1; c < iterations; c++) {
-      hash = md5(hash);
-    }
+    MD5((const unsigned char *)input.c_str(), input.size(), (unsigned char *)hash.c_str());
     
+    for (size_t c = 1; c < iterations; ++c)
+      MD5((const unsigned char *)hash.c_str(), hash.size(), (unsigned char *)hash.c_str());
+
     return hash;
   }
 
