@@ -15,4 +15,7 @@ int main() {
   assert(Crypto::hex(Crypto::md5("Password")) == "dc647eb65e6711e155375218212b3964");
   //assert(Crypto::hex(Crypto::md5("Password", 2)) == "b8498ee29e56e711a268ae8cc461ae94");
 
+  assert(Crypto::hex(Crypto::sha256("Test")) == "532eaabd9574880dbf76b9b8cc00832c20a6ec113d682299550d7a6e0f345e25");
+  assert(Crypto::hex(Crypto::sha256("Test", 2)) == "c60907e990745f7d91c4423713764d2724571269d3db4856d37c6302792c59a6");
+
 }
