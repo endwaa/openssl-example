@@ -22,7 +22,15 @@ public:
 
   /// Return the MD5 (128-bit) hash from input.
   static std::string md5(const std::string &input, size_t iterations = 1) {
-    throw std::logic_error("not yet implemented");
+    std::string hash;
+    hash.resize(128 / 8);
+    hash = md5(input);
+    
+    for (size_t c = 1; c < iterations; c++) {
+      hash = md5(hash);
+    }
+    
+    return hash;
   }
 
   /// Return the SHA-1 (160-bit) hash from input.
